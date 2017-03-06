@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #input{
+            height: 100px;
+            width: 500px;
+            background-color: bisque;
+        }
+        #output{
+            height: 100px;
+            width: 500px;
+            background-color: antiquewhite;
+        }
+    </style>
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'script/jquery-3.1.1.min.js' %}"></script>
+    {% comment %}<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type = "text/css"/>{% endcomment %}
+</head>
+<body>
+    <div>
+        <textarea  id="input" oninput="console.log('event!'); parseText();">
+            asldkfa sdfalksdaf asdflkjasdf 
+        asdflkjasdfasd
+        asdflkjasdfasdf
+        asdflkjasdfasdf
+        dsf sfd sd fs df sdf a@game.com asdf asdf 
+        asdfasdf 
+        </textarea>
+    <div>
+        <span id="output"></span>
+    </div>
+    </div>
+</body>
+</html>
+<script type="text/JavaScript">
+    function extractEmails (text){
+        return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+    }
+    function parseText(){
+        
+        var text = $('#input').val();
+        console.log(text);
+        
+        var emails = extractEmails(text);
+        var resultString = emails.join('\n');
+        $("#output").text(resultString);
+        console.log("end");
+    };
+</script>
